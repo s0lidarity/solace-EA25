@@ -1,0 +1,39 @@
+# Node
+node_modules/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Env files
+.env
+.env.*
+
+# Next.js
+.next/
+out/
+
+# Build
+dist/
+build/
+
+# Editor directories and files
+.vscode/
+.idea/
+*.sublime-workspace
+
+# macOS
+.DS_Store
+
+# Coverage
+coverage/
+
+# SQLite
+*.sqlite
+
+# Drizzle (migrations output)
+drizzle/
+
+# PostgreSQL history
+.psql_history

@@ -1,3 +1,33 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .th-primary {
+        @apply text-left px-4 py-3 bg-teal-900 text-white text-sm font-semibold;
+    }
+
+    /* Table & row/td utilities for advocates table */
+    .table-advocates {
+        @apply w-full border-separate border-spacing-0;
+    }
+
+    /* zebra striping via nth-child for tbody rows */
+    .table-advocates tbody tr:nth-child(odd) {
+        @apply bg-white;
+    }
+    .table-advocates tbody tr:nth-child(even) {
+        @apply bg-orange-100;
+    }
+    .table-advocates tbody tr:hover {
+        @apply bg-slate-100;
+    }
+
+    .td-base {
+        @apply px-4 py-3 border-b border-gray-200 align-middle text-sm text-slate-900;
+    }
+
+    .chip {
+        @apply inline-block bg-teal-900 text-white px-2 py-0.5 rounded-full text-xs mr-2 mb-1;
+    }
+}
