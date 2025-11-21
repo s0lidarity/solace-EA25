@@ -1,21 +1,17 @@
 "use client";
 
-import { ChangeEvent, useEffect, useState } from "react";
-import AdvocateRow from "./components/AdvocatesTable/AdvocateRow";
-import { Advocate } from "./types/AdvocateTypes";
+import { useEffect, useState } from "react";
 
 export default function Home() {
-  const [advocates, setAdvocates] = useState<Advocate []>([]);
-  const [filteredAdvocates, setFilteredAdvocates] = useState<Advocate []>([]);
-  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [advocates, setAdvocates] = useState([]);
+  const [filteredAdvocates, setFilteredAdvocates] = useState([]);
 
   useEffect(() => {
     console.log("fetching advocates...");
     fetch("/api/advocates").then((response) => {
       response.json().then((jsonResponse) => {
-        const data: Advocate[] = jsonResponse.data;
-        setAdvocates(data);
-        setFilteredAdvocates(data);
+        setAdvocates(jsonResponse.data);
+        setFilteredAdvocates(jsonResponse.data);
       });
     });
   }, []);
@@ -39,16 +35,16 @@ export default function Home() {
       const years = String(advocate.yearsOfExperience ?? "");
 
       return (
-        first.includes(st) ||
-        last.includes(st) ||
-        city.includes(st) ||
-        degree.includes(st) ||
-        specialties.some((s) => s.includes(st)) ||
-        years.includes(st)
+        advocate.firstName.includes(searchTerm) ||
+        advocate.lastName.includes(searchTerm) ||
+        advocate.city.includes(searchTerm) ||
+        advocate.degree.includes(searchTerm) ||
+        advocate.specialties.includes(searchTerm) ||
+        advocate.yearsOfExperience.includes(searchTerm)
       );
     });
 
-    setFilteredAdvocates(filtered);
+    setFilteredAdvocates(filteredAdvocates);
   };
 
   const handleReset = () => {
