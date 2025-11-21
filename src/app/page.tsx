@@ -20,7 +20,7 @@ export default function Home() {
     });
   }, []);
 
-  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChangeTerms = (e: ChangeEvent<HTMLInputElement>) => {
     const term = e.target.value;
     setSearchTerm(term);
 
@@ -51,7 +51,7 @@ export default function Home() {
     setFilteredAdvocates(filtered);
   };
 
-  const onClick = () => {
+  const handleReset = () => {
     setSearchTerm("");
     setFilteredAdvocates(advocates);
   };
@@ -62,15 +62,19 @@ export default function Home() {
       <div className="flex items-center justify-between mb-4 gap-6">
         <p className="text-sm text-slate-600">Search</p>
         <p className="text-sm text-slate-500">
-          Searching for: <span id="search-term" className="font-medium"></span>
+          <span className="m-1">Searching for:</span><span className="font-medium m-1 p-1 rounded-md hover:outline hover:outline-2 hover:outline-red-400 hover:outline-offset-2">
+            <button id="search-term" onClick={handleReset}>
+              {searchTerm && <span>{searchTerm} 🗑️</span>}
+            </button>
+          </span>
         </p>
         <div className="flex items-center gap-3">
           <input 
-            onChange={onChange} 
+            onChange={handleChangeTerms} 
             className="border border-gray-300 px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-900"
             placeholder="Type to filter..."/>
           <button 
-            onClick={onClick}
+            onClick={handleReset}
             className="bg-teal-900 text-white px-3 py-2 rounded-md hover:bg-orange-400 transition-colors">
               Reset Search
           </button>
@@ -92,7 +96,7 @@ export default function Home() {
           <tbody>
             {filteredAdvocates.map((advocate, i) => {
               return (
-                <AdvocateRow advocate={advocate} key={advocate?.phoneNumber} index={i}/>
+                <AdvocateRow advocate={advocate} key={advocate?.phoneNumber || i} index={i}/>
               );
             })}
           </tbody>
