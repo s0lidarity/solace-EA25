@@ -10,6 +10,7 @@
 
 ## Next Steps
 
+1. Run npm audit fix and update project vulnerabilities.
 1. Overhaul the filters. Break out the filter and search into a bar with togglable filters that are populated with relevant options from the data set and can be applied granularly/intelligently. Show only specialties that are in the dataset, allow filtering for minimum/maximum experience, allow for filters that have inclusive sets (multiple states, multiple degrees, etc).
 1. Add unit testing and behavioral testing. Define test coverage standards.
 1. Establish CI/CD with deployments to a staging and a separate production environment.
