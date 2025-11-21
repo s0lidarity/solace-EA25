@@ -17,14 +17,11 @@ function AdvocateRow({ advocate, index }: AdvocateRowProps) {
             <td className="td-base">{advocate.city}</td>
             <td className="td-base">{advocate.degree}</td>
             <td className="td-base">
-                {(advocate?.specialties || []).map((s) => (
-                    <span
-                        key={`${advocate.phoneNumber}`}
-                        className="chip"
-                    >
-                        {s}
-                    </span>
-                ))}
+                    {(advocate?.specialties || []).map((s, i) => (
+                        <span key={`${advocate.phoneNumber}-${i}`} className="chip">
+                            {s}
+                        </span>
+                    ))}
             </td>
             <td className="td-base">{advocate.yearsOfExperience}</td>
             <td className="td-base">{advocate.phoneNumber}</td>
